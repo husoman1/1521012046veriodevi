@@ -1,0 +1,24 @@
+import socket
+
+def portaBaglan(portNo,txtName):
+    soket = socket.socket()
+    hostAdi=socket.gethostname()
+    portNumarasi=portNo
+    soket.bind((hostAdi,portNumarasi))
+    soket.listen(5)
+    print("Host Adınız: "+hostAdi)
+    print("Client Bekleniyor")
+    baglanti ,adres = soket.accept()
+    print(adres, "Baglandi")
+
+    dosyaAdi = input(str("Gidecek txt'nin tam adını yazınız :"))
+    dosya = open(dosyaAdi ,'rb')
+    dosyaVerisi = dosya.read(1024)
+    baglanti.send(dosyaVerisi)
+    print("Dosya Cliente Gönderildi.")
+
+portaBaglan(1027,"deneme.txt")
+
+
+
+
